@@ -14,7 +14,6 @@
                 <input id="email" type="email" name="email" placeholder="E-mail" required> <br/>
                 <input id="cpf" type="text" name="cpf" placeholder="CPF" required> <br/>
                 <input id="telefone" type="number" name="telefone" placeholder="Telefone" required> <br/>
-                <input id="endereco" type="text" name="endereco" placeholder="Endereço" required> <br/>
                 <input id="senha" type="password" name="senha" placeholder="Senha" required> <br/>
                 <label class="user-login"> Já possui conta? <a href="login.html">Entre aqui</a></label> <br>
                 <input id="submit" type="submit" value="Registrar">
@@ -33,7 +32,7 @@
                 <h1>Algo deu errado. Tente novamente.</h1>
             <%} %>
             <h2>Restaurante Wasabi</h2>
-            <p>The Online Shopping System is the application that allows the users to shop online without going to the shops to buy them.</p>
+            <p>Registre-se para visualizar os nossos pratos</p>
             
         </div>
     </div>
