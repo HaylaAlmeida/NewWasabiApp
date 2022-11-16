@@ -10,12 +10,13 @@ public class AcessoBD {
     static String senha = "^@o$31Aw758w";
     static Connection conn;
 
-    public static void conectar() throws SQLException, ClassNotFoundException {
-        Class.forName("com.mysql.cj.jdbc.Driver");
+    public static void conectar() throws SQLException{
         conn = DriverManager.getConnection(url, usuario, senha);
+        conn.setAutoCommit(false);
     }
 
-    public static Connection getConnection() throws SQLException{
+    public static Connection getConnection() throws SQLException, ClassNotFoundException {
+        Class.forName("com.mysql.cj.jdbc.Driver");
         return conn;
     }
 

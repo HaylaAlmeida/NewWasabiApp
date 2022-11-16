@@ -1,5 +1,8 @@
 package com.wasabi.projetowasabiweb;
 
+import com.wasabi.model.Cliente;
+import org.hibernate.resource.transaction.spi.TransactionStatus;
+
 import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
@@ -18,7 +21,7 @@ public class RegistroServlet extends HttpServlet {
         bd = new AcessoBD();
         try {
             bd.conectar();
-        } catch (ClassNotFoundException | SQLException e) {
+        } catch (SQLException e) {
             e.printStackTrace();
         }
     }
@@ -29,20 +32,20 @@ public class RegistroServlet extends HttpServlet {
         String email = request.getParameter("email");
         String cpf = request.getParameter("cpf");
         String telefone = request.getParameter("telefone");
-        String endereco = request.getParameter("endereco");
         String senha = request.getParameter("senha");
         try {
             conn = bd.getConnection();
-            PreparedStatement ps = conn.prepareStatement("INSERT INTO cliente (nome, email, cpf, telefone, endereço," +
-                    "senha) VALUES (?, ?, ?, ?, ?, ?)");
+            PreparedStatement ps = conn.prepareStatement("INSERT INTO cliente (nome, email, cpf, telefone," +
+                    "senha) VALUES (?, ?, ?, ?, ?)");
             ps.setString(1, nome);
             ps.setString(2, email);
             ps.setString(3, cpf);
             ps.setString(4, telefone);
-            ps.setString(5, endereco);
-            ps.setString(6, senha);
+            ps.setString(5, senha);
+            ps.executeUpdate();
+            conn.commit();
             response.sendRedirect("registro.jsp?msg=valid");
-        } catch (SQLException e) {
+        } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();
             response.sendRedirect("registro.jsp?msg=invalid");
         }
